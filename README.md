@@ -5,6 +5,7 @@
 $ npx create-expo-app AwesomeProject</p>
 потім перейти у папку проекту і Ви вже можете його запустити за допомогою команди</p>
 $ cd AwesomeProject</p>
+$ npx expo install expo-font </p>
 $ npx expo start</p>
 
 ![Alt text](image.png)
