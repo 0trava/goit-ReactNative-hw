@@ -1,7 +1,8 @@
-import { ImageBackground, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
 
 import { useFonts } from 'expo-font';
+import add_icon from '../images/add_icon.png';
 
 export default function RegistrationScreen() {
     const [fontsLoaded] = useFonts({
@@ -9,6 +10,7 @@ export default function RegistrationScreen() {
         'Roboto-Bold': require('../fonts/Roboto-Bold.ttf'),
         'Roboto-Medium': require('../fonts/Roboto-Medium.ttf'),
       });
+    const [login, onChangeLogin] = React.useState('');
     const [email, onChangeEmail] = React.useState('');
     const [password, onChangePassword] = React.useState('');
 
@@ -16,7 +18,26 @@ export default function RegistrationScreen() {
   return (
     <ImageBackground source={require('../images/background.png')} style={styles.background}>
         <View  style={styles.login_page}>
-            <Text  style={styles.login_title}>Увійти</Text>
+            {/* INPUT-avatar*/}
+            <View  style={styles.avatar_block}>
+                <TouchableOpacity  style={styles.avatar_btn} onPress={()=> {}}>
+                <Image source={add_icon} style={styles.avatar_btn_img}></Image>
+                </TouchableOpacity>
+
+
+            </View>
+
+            <Text  style={styles.login_title}>Реєстрація</Text>
+            {/* INPUT-login */}
+            <TextInput
+                style={styles.input_name}
+                onChangeText={onChangeLogin}
+                placeholder="Логін"
+                keyboardType="email-address"
+                autoComplete='email'
+                returnKeyType="next"
+                value={login}
+            />
             {/* INPUT-email */}
             <TextInput
                 style={styles.input_name}
@@ -44,12 +65,12 @@ export default function RegistrationScreen() {
 
             {/* BUTTON */}
             <TouchableOpacity style={styles.button} onPress={()=> {}}>
-                <Text  style={styles.button_text}>Увійти</Text>
+                <Text  style={styles.button_text}>Зареєстуватися</Text>
             </TouchableOpacity>
             {/* TEXT */}
             <View style={styles.text_block}>
-                <Text  style={styles.text}>Немає акаунту? </Text>
-                <TouchableOpacity style={styles.text_link} onPress={()=> {}}><Text  style={styles.text_link}>Зареєструватися</Text></TouchableOpacity>
+                <Text  style={styles.text}>Вже є акаунт?  </Text>
+                <TouchableOpacity style={styles.text_link} onPress={()=> {}}><Text  style={styles.text_link}>Увійти</Text></TouchableOpacity>
             </View>
             </View>
 
@@ -76,7 +97,8 @@ const styles = StyleSheet.create({
 
         position: 'absolute',
         width: '100%',
-        height: 489,
+
+        height: "67%",
         left: 0,
         bottom: 0,
         backgroundColor: '#FFFFFF',
@@ -84,6 +106,32 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 25,
         display:"flex",
         justifyContent: "flex-start",
+
+    },
+
+    avatar_block: {
+        position: "relative",
+        width: 120,
+        height: 120,
+        backgroundColor: "#F6F6F6",
+        borderRadius: 16,
+        top: -60,
+        left: "35%",
+        bottom: 0,
+    },
+
+    avatar_btn: {
+        position: "absolute",
+
+        right: -12.5,
+        bottom: 14,
+
+
+    },
+
+    avatar_btn_img: {
+        width: 25,
+        height: 25,
 
     },
 
@@ -95,7 +143,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         letterSpacing: 1,
         color: '#212121',
-        marginTop: 32,
+        marginTop: -32,
+        marginBottom: 17,
 
     },
 
@@ -104,7 +153,7 @@ const styles = StyleSheet.create({
         height: 50,
         marginLeft: 16,
         marginRight: 16,
-        marginTop: 33,
+        marginTop: 16,
         backgroundColor: '#F6F6F6',
         borderRadius: 8,
         borderColor: '#E8E8E8',
