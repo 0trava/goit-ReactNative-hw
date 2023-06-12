@@ -6,15 +6,15 @@ export default function PostsScreen() {
     <View>
         {/* HEADER */}
         <View >
-        <Text>PostsScreen</Text>
+        <Text>HEADER</Text>
         </View>
         {/* BODY */}
         <View>
-        <Text>PostsScreen</Text>
+        <Text>BODY</Text>
         </View>
         {/* FOOTER */}
         <View>
-        <Text>PostsScreen</Text>
+        <Text>FOOTER</Text>
         </View>
     </View>
     
