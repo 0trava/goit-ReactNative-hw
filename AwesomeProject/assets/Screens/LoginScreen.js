@@ -5,7 +5,7 @@ import { useFonts } from 'expo-font';
 
 export default function LoginScreen() {
     const [fontsLoaded] = useFonts({
-        'Roboto-Regular': require('../fonts/Roboto-Regular.ttf'),
+        'Roboto': require('../fonts/Roboto-Regular.ttf'),
         'Roboto-Bold': require('../fonts/Roboto-Bold.ttf'),
         'Roboto-Medium': require('../fonts/Roboto-Medium.ttf'),
       });
@@ -17,6 +17,7 @@ export default function LoginScreen() {
     <ImageBackground source={require('../images/background.png')} style={styles.background}>
         <View  style={styles.login_page}>
             <Text  style={styles.login_title}>Увійти</Text>
+            {/* INPUT-email */}
             <TextInput
                 style={styles.input_name}
                 onChangeText={onChangeEmail}
@@ -26,20 +27,30 @@ export default function LoginScreen() {
                 returnKeyType="next"
                 value={email}
             />
-            <TextInput
-                style={styles.input_password}
-                onChangeText={onChangePassword}
-                placeholder="••••••••••••"
-                keyboardType="password"
-                autoComplete='current-password'
-                value={password}
-                maxLength="20"
-                secureTextEntry={true}
-            />
+            {/* INPUT-Password */}
+            <View position="relative">
+                <TextInput
+                    style={styles.input_password}
+                    onChangeText={onChangePassword}
+                    placeholder="••••••••••••"
+                    autoComplete='current-password'
+                    value={password}
+                    secureTextEntry={true}
+                />
+                <TouchableOpacity style={styles.input_btn} onPress={()=> {}}>
+                    <Text  style={styles.text}>Показати</Text>
+                </TouchableOpacity>
+            </View>
 
+            {/* BUTTON */}
             <TouchableOpacity style={styles.button} onPress={()=> {}}>
                 <Text  style={styles.button_text}>Увійти</Text>
             </TouchableOpacity>
+            {/* TEXT */}
+            <View style={styles.text_block}>
+                <Text  style={styles.text}>Немає акаунту? </Text>
+                <TouchableOpacity style={styles.text_link} onPress={()=> {}}><Text  style={styles.text_link}>Зареєструватися</Text></TouchableOpacity>
+            </View>
             </View>
 
 
@@ -77,9 +88,8 @@ const styles = StyleSheet.create({
     },
 
     login_title: {
-        fontFamily: 'Roboto-Regular', 
-        // fontStyle: 'normal',
-        // fontWeight: 600,
+        fontFamily: 'Roboto', 
+        fontWeight: 600,
         fontSize: 30,
         lineHeight: 35,
         textAlign: 'center',
@@ -101,8 +111,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         paddingLeft: 16,
 
-        fontFamily: 'Roboto-Regular', 
-        // fontWeight: 400,
+        fontFamily: 'Roboto', 
         color: '#BDBDBD',
         fontSize: 16,
         lineHeight: 19,
@@ -123,12 +132,18 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         paddingLeft: 16,
 
-        fontFamily: 'Roboto-Regular', 
-        fontWeight: 400,
-        color: '#BDBDBD',
+        fontFamily: 'Roboto', 
+        // fontWeight: 400,
+        color: '#212121',
         fontSize: 16,
         lineHeight: 19,
 
+    },
+
+    input_btn: {
+        position: 'absolute',
+        top: "45%",
+        right: "10%",
     },
 
     button: {
@@ -140,6 +155,7 @@ const styles = StyleSheet.create({
         height: 51,
         marginTop: 43,
         marginLeft:16,
+        marginBottom: 16,
 
     
         backgroundColor: '#ff6c00',
@@ -148,9 +164,37 @@ const styles = StyleSheet.create({
     },
 
     button_text: {
-        color: "#FFFFFF"
+        color: "#FFFFFF",
+        fontFamily: 'Roboto', 
+        // fontWeight: 400,
+        fontSize: 16,
+        lineHeight: 19,
 
-    }
+    },
+
+    text_block: {
+        display: "flex",
+        flexDirection: 'row',
+        justifyContent: "center",
+
+    },
+
+    text: {
+        fontFamily: 'Roboto', 
+        // fontWeight: 400,
+        fontSize: 16,
+        lineHeight: 19,
+        color: "#1B4371",
+    },
+
+    text_link: {
+        fontFamily: 'Roboto', 
+        // fontWeight: 400,
+        fontSize: 16,
+        lineHeight: 19,
+        color: "#1B4371",
+        textDecorationLine: "underline",
+    },
 
 
 
