@@ -33,9 +33,8 @@ export default function RegistrationScreen() {
                 style={styles.input_name}
                 onChangeText={onChangeLogin}
                 placeholder="Логін"
-                keyboardType="email-address"
-                autoComplete='email'
-                returnKeyType="next"
+                keyboardType="default"
+                autoComplete='name'
                 value={login}
             />
             {/* INPUT-email */}
@@ -97,7 +96,6 @@ const styles = StyleSheet.create({
 
         position: 'absolute',
         width: '100%',
-
         height: "67%",
         left: 0,
         bottom: 0,
