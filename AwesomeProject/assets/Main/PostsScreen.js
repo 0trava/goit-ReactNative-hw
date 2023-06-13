@@ -1,12 +1,20 @@
 import { StyleSheet, Text, View, Image,TouchableOpacity } from 'react-native';
 import React from 'react';
+import { useFonts } from 'expo-font';
 
 import IconOut from '../images/postsscreen_icon_out.png';
 import IconGrid from  '../images/toolbar_grid.png';
 import IconUnion from  '../images/toolbar_union.png';
 import IconUser from  '../images/toolbar_user.png';
+import Avatar from  '../images/ava.png';
 
 export default function PostsScreen() {
+    const [fontsLoaded] = useFonts({
+        'Roboto': require('../fonts/Roboto-Regular.ttf'),
+        'Roboto-Bold': require('../fonts/Roboto-Bold.ttf'),
+        'Roboto-Medium': require('../fonts/Roboto-Medium.ttf'),
+      });
+
   return (
     <View style={styles.container}>
         {/* HEADER */}
@@ -20,7 +28,19 @@ export default function PostsScreen() {
         </View>
         {/* BODY */}
         <View style={styles.body} >
-        <Text>BODY</Text>
+
+            {/* USER */}
+             <View style={styles.user_item}>
+                <Image source={Avatar} style={styles.user_avatar} ></Image>
+                <View>
+                <Text style={styles.user_name} >Natali Romanova</Text>
+                <Text style={styles.user_email}>email@example.com</Text>
+                </View>
+             </View>
+
+
+
+
         </View>
         {/* FOOTER */}
         <View style={styles.footer}>
@@ -47,6 +67,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
 
+// STYLES for HEADER
     header: {
         position: "relative",
         flex: 1,
@@ -80,12 +101,47 @@ const styles = StyleSheet.create({
         height: 24,
     },
 
-
+// STYLES for BODY 
     body: {
         flex: 7,
-        // backgroundColor: "#FF6C00",
+        paddingLeft: 16,
+        paddingTop: 32,
     },
 
+    user_item: {
+        // flex: 1,
+        width: "100%",
+        flexDirection: 'row',
+        alignItems: "center",
+    },
+
+    user_avatar: {
+        width: 60,
+        height: 60,
+        marginRight: 8,
+
+
+    },
+
+    user_name: {
+        fontFamily: "Roboto",
+        fontWeight: 700,
+        fontSize: 13,
+        lineHeight: 15,
+        color: "#212121",
+    },
+
+    user_email: {
+        fontFamily: "Roboto",
+        fontWeight: 400,
+        fontSize: 11,
+        lineHeight: 15,
+        color: "rgba(33, 33, 33, 0.8);",
+
+    },
+
+
+// STYLES for FOOTER 
     footer: {
         flex: 1,
         flexDirection: 'row',
