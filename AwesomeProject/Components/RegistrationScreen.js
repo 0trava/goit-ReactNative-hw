@@ -1,4 +1,16 @@
-import { ImageBackground, StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
+import { 
+    ImageBackground, 
+    StyleSheet, 
+    Text, 
+    View, 
+    TextInput, 
+    TouchableOpacity, 
+    KeyboardAvoidingView,
+    TouchableWithoutFeedback,
+    Keyboard,
+    Alert,
+    Platform,
+    Image } from 'react-native';
 import React, { useEffect, useState } from 'react';
 
 import { useFonts } from 'expo-font';
@@ -41,8 +53,16 @@ export default function RegistrationScreen() {
 
 
   return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <ImageBackground source={require('../assets/images/background.png')} style={styles.background}>
+        <TouchableWithoutFeedback 
+        onPress={Keyboard.dismiss}
+        >
+
         <View  style={styles.login_page}>
+        <KeyboardAvoidingView // визначаємо ОС та налаштовуємо поведінку клавіатури
+        behavior={Platform.OS == "ios" ? "padding" : "height"}
+        >
             {/* INPUT-avatar*/}
             <View  style={styles.avatar_block}>
                 <TouchableOpacity  style={styles.avatar_btn} onPress={()=> {}}>
@@ -100,10 +120,12 @@ export default function RegistrationScreen() {
                 <Text  style={styles.text}>Вже є акаунт?  </Text>
                 <TouchableOpacity style={styles.text_link} onPress={()=> {}}><Text  style={styles.text_link}>Увійти</Text></TouchableOpacity>
             </View>
+            </KeyboardAvoidingView>
             </View>
 
-
+            </TouchableWithoutFeedback>
     </ImageBackground>
+    </TouchableWithoutFeedback>
   )
 }
 

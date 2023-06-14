@@ -48,12 +48,15 @@ export default function LoginScreen() {
 
 
   return (
-    
+    <TouchableWithoutFeedback 
+    onPress={Keyboard.dismiss}
+    >
     <ImageBackground source={require('../assets/images/background.png')} style={styles.background}>
-        <View  style={styles.login_page}>
+
         <TouchableWithoutFeedback 
-        // onPress={Keyboard.dismiss}
+        onPress={Keyboard.dismiss}
         >
+        <View  style={styles.login_page}>
         <KeyboardAvoidingView // визначаємо ОС та налаштовуємо поведінку клавіатури
         behavior={Platform.OS == "ios" ? "padding" : "height"}
         >
@@ -98,10 +101,10 @@ export default function LoginScreen() {
                 <TouchableOpacity style={styles.text_link} onPress={()=> {}}><Text  style={styles.text_link}>Зареєструватися</Text></TouchableOpacity>
             </View>
             </KeyboardAvoidingView>
-            </TouchableWithoutFeedback>
             </View>
+            </TouchableWithoutFeedback>
     </ImageBackground>
-
+    </TouchableWithoutFeedback>
   )
 }
 
@@ -120,17 +123,19 @@ const styles = StyleSheet.create({
         position: 'relative',
         justifyContent: "flex-end",
     },
+
     login_page: {
 
-       width: '100%',
-        height: 489,
+        position: 'absolute',
+        width: '100%',
+        height: "50%",
+        left: 0,
+        bottom: 0,
         backgroundColor: '#FFFFFF',
         borderTopLeftRadius: 25,
         borderTopRightRadius: 25,
         display:"flex",
         justifyContent: "flex-start",
-        marginBottom: 0,
-
 
     },
 
