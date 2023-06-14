@@ -14,6 +14,12 @@ export default function RegistrationScreen() {
     const [email, onChangeEmail] = React.useState('');
     const [password, onChangePassword] = React.useState('');
     const [isDisabled, setIsDisabled] = useState(true);
+    const [secureText, setSecureText] = useState(true);
+
+    const showSecureText = () => {
+        setSecureText(!secureText);
+    }
+
 
     const onRegistartion = () => {
         console.log(`Form submite login = ${login} email = ${email} password = ${password}`);
@@ -74,10 +80,10 @@ export default function RegistrationScreen() {
                     placeholder="••••••••••••"
                     autoComplete='current-password'
                     value={password}
-                    secureTextEntry={true}
+                    secureTextEntry={secureText}
                 />
-                <TouchableOpacity style={styles.input_btn} onPress={()=> {}}>
-                    <Text  style={styles.text}>Показати</Text>
+                <TouchableOpacity style={styles.input_btn} onPress={showSecureText}>
+                    <Text  style={styles.text}>{secureText?  "Показати" : "Сховати" }</Text>
                 </TouchableOpacity>
             </View>
 

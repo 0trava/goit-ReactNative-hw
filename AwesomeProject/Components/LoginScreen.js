@@ -23,6 +23,11 @@ export default function LoginScreen() {
     const [email, onChangeEmail] = useState('');
     const [password, onChangePassword] = useState('');
     const [isDisabled, setIsDisabled] = useState(true);
+    const [secureText, setSecureText] = useState(true);
+
+    const showSecureText = () => {
+        setSecureText(!secureText);
+    }
 
 
     useEffect (() => {
@@ -71,11 +76,11 @@ export default function LoginScreen() {
                     placeholder="••••••••••••"
                     autoComplete='current-password'
                     value={password}
-                    secureTextEntry={true}
+                    secureTextEntry={secureText}
                     onFocus={()=> {}}
                 />
-                <TouchableOpacity style={styles.input_btn} >
-                    <Text  style={styles.text}>Показати</Text>
+                <TouchableOpacity style={styles.input_btn} onPress={showSecureText}>
+                    <Text  style={styles.text}>{secureText?  "Показати" : "Сховати" }</Text>
                 </TouchableOpacity>
             </View>
 
