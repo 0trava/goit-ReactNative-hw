@@ -17,6 +17,7 @@ export default function RegistrationScreen() {
 
     const onRegistartion = () => {
         console.log(`Form submite login = ${login} email = ${email} password = ${password}`);
+        onChangeLogin("");
         onChangeEmail("");
         onChangePassword("");
         setIsDisabled(true);
