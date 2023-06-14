@@ -2,17 +2,17 @@ import { StyleSheet, Text, View, Image,TouchableOpacity } from 'react-native';
 import React from 'react';
 import { useFonts } from 'expo-font';
 
-import IconOut from '../images/postsscreen_icon_out.png';
-import IconGrid from  '../images/toolbar_grid.png';
-import IconUnion from  '../images/toolbar_union.png';
-import IconUser from  '../images/toolbar_user.png';
-import Avatar from  '../images/ava.png';
+import IconOut from '../assets/images/postsscreen_icon_out.png';
+import IconGrid from  '../assets/images/toolbar_grid.png';
+import IconUnion from  '../assets/images/toolbar_union.png';
+import IconUser from  '../assets/images/toolbar_user.png';
+import Avatar from  '../assets/images/ava.png';
 
 export default function PostsScreen() {
     const [fontsLoaded] = useFonts({
-        'Roboto': require('../fonts/Roboto-Regular.ttf'),
-        'Roboto-Bold': require('../fonts/Roboto-Bold.ttf'),
-        'Roboto-Medium': require('../fonts/Roboto-Medium.ttf'),
+        'Roboto': require('../assets/fonts/Roboto-Regular.ttf'),
+        'Roboto-Bold': require('../assets/fonts/Roboto-Bold.ttf'),
+        'Roboto-Medium': require('../assets/fonts/Roboto-Medium.ttf'),
       });
 
   return (

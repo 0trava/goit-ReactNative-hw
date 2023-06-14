@@ -9,7 +9,8 @@ export default function App() {
     // <LoginScreen />
     <RegistrationScreen />
     // <PostsScreen />
-
+    )
+  };
 
 
 
@@ -23,8 +24,7 @@ export default function App() {
       
       
     // </View>
-  );
-}
+
 
 const styles = StyleSheet.create({
   container: {

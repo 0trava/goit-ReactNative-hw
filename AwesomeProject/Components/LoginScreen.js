@@ -1,21 +1,57 @@
-import { ImageBackground, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
-import React from 'react';
+import { 
+    ImageBackground, 
+    StyleSheet, 
+    Text, 
+    View, 
+    TextInput, 
+    TouchableOpacity, 
+    KeyboardAvoidingView,
+    TouchableWithoutFeedback,
+    Keyboard,
+    Alert,
+    Platform } from 'react-native';
+import React, { useEffect, useState } from 'react';
 
 import { useFonts } from 'expo-font';
 
 export default function LoginScreen() {
     const [fontsLoaded] = useFonts({
-        'Roboto': require('../fonts/Roboto-Regular.ttf'),
-        'Roboto-Bold': require('../fonts/Roboto-Bold.ttf'),
-        'Roboto-Medium': require('../fonts/Roboto-Medium.ttf'),
+        'Roboto': require('../assets/fonts/Roboto-Regular.ttf'),
+        'Roboto-Bold': require('../assets/fonts/Roboto-Bold.ttf'),
+        'Roboto-Medium': require('../assets/fonts/Roboto-Medium.ttf'),
       });
-    const [email, onChangeEmail] = React.useState('');
-    const [password, onChangePassword] = React.useState('');
+    const [email, onChangeEmail] = useState('');
+    const [password, onChangePassword] = useState('');
+    const [isDisabled, setIsDisabled] = useState(true);
+
+
+    useEffect (() => {
+        if (email === "" || password === ""){
+
+        } else {
+            setIsDisabled(false);
+        }
+
+    },[email, password]) 
+
+    const onLogin = () => {
+        console.log(`Form submite email = ${email} password = ${password}`);
+        onChangeEmail("");
+        onChangePassword("");
+        setIsDisabled(true);
+      };
 
 
   return (
-    <ImageBackground source={require('../images/background.png')} style={styles.background}>
+    
+    <ImageBackground source={require('../assets/images/background.png')} style={styles.background}>
         <View  style={styles.login_page}>
+        <TouchableWithoutFeedback 
+        // onPress={Keyboard.dismiss}
+        >
+        <KeyboardAvoidingView // визначаємо ОС та налаштовуємо поведінку клавіатури
+        behavior={Platform.OS == "ios" ? "padding" : "height"}
+        >
             <Text  style={styles.login_title}>Увійти</Text>
             {/* INPUT-email */}
             <TextInput
@@ -36,25 +72,31 @@ export default function LoginScreen() {
                     autoComplete='current-password'
                     value={password}
                     secureTextEntry={true}
+                    onFocus={()=> {}}
                 />
-                <TouchableOpacity style={styles.input_btn} onPress={()=> {}}>
+                <TouchableOpacity style={styles.input_btn} >
                     <Text  style={styles.text}>Показати</Text>
                 </TouchableOpacity>
             </View>
 
             {/* BUTTON */}
-            <TouchableOpacity style={styles.button} onPress={()=> {}}>
+            <TouchableOpacity style={{...styles.button, opacity: isDisabled? 0.3 : 1}} onPress={onLogin} disabled={isDisabled}>
                 <Text  style={styles.button_text}>Увійти</Text>
             </TouchableOpacity>
+
+
+
+
             {/* TEXT */}
             <View style={styles.text_block}>
                 <Text  style={styles.text}>Немає акаунту? </Text>
                 <TouchableOpacity style={styles.text_link} onPress={()=> {}}><Text  style={styles.text_link}>Зареєструватися</Text></TouchableOpacity>
             </View>
+            </KeyboardAvoidingView>
+            </TouchableWithoutFeedback>
             </View>
-
-
     </ImageBackground>
+
   )
 }
 
@@ -67,25 +109,32 @@ export default function LoginScreen() {
 // STYLES --------------
 
 const styles = StyleSheet.create({
+
     background: {
         flex: 1,
         position: 'relative',
+        justifyContent: "flex-end",
     },
-
     login_page: {
 
-        position: 'absolute',
-        width: '100%',
+       width: '100%',
         height: 489,
-        left: 0,
-        bottom: 0,
         backgroundColor: '#FFFFFF',
         borderTopLeftRadius: 25,
         borderTopRightRadius: 25,
         display:"flex",
         justifyContent: "flex-start",
+        marginBottom: 0,
+
 
     },
+
+    // keyboardOpen: {
+    //     backgroundColor: "red",
+    //     marginBottom: 32,
+    //     // height: 489,
+    // },
+
 
     login_title: {
         fontFamily: 'Roboto', 

@@ -1,22 +1,40 @@
 import { ImageBackground, StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useFonts } from 'expo-font';
-import add_icon from '../images/add_icon.png';
+import add_icon from '../assets/images/add_icon.png';
 
 export default function RegistrationScreen() {
     const [fontsLoaded] = useFonts({
-        'Roboto': require('../fonts/Roboto-Regular.ttf'),
-        'Roboto-Bold': require('../fonts/Roboto-Bold.ttf'),
-        'Roboto-Medium': require('../fonts/Roboto-Medium.ttf'),
+        'Roboto': require('../assets/fonts/Roboto-Regular.ttf'),
+        'Roboto-Bold': require('../assets/fonts/Roboto-Bold.ttf'),
+        'Roboto-Medium': require('../assets/fonts/Roboto-Medium.ttf'),
       });
     const [login, onChangeLogin] = React.useState('');
     const [email, onChangeEmail] = React.useState('');
     const [password, onChangePassword] = React.useState('');
+    const [isDisabled, setIsDisabled] = useState(true);
+
+    const onRegistartion = () => {
+        console.log(`Form submite login = ${login} email = ${email} password = ${password}`);
+        onChangeEmail("");
+        onChangePassword("");
+        setIsDisabled(true);
+      };
+
+      useEffect (() => {
+        if (email === "" || password === "" || login === ""){
+
+        } else {
+            setIsDisabled(false);
+        }
+
+    },[email, password]) 
+
 
 
   return (
-    <ImageBackground source={require('../images/background.png')} style={styles.background}>
+    <ImageBackground source={require('../assets/images/background.png')} style={styles.background}>
         <View  style={styles.login_page}>
             {/* INPUT-avatar*/}
             <View  style={styles.avatar_block}>
@@ -62,10 +80,14 @@ export default function RegistrationScreen() {
                 </TouchableOpacity>
             </View>
 
+
             {/* BUTTON */}
-            <TouchableOpacity style={styles.button} onPress={()=> {}}>
+            <TouchableOpacity  style={{...styles.button, opacity: isDisabled? 0.3 : 1}} onPress={onRegistartion} disabled={isDisabled}>
                 <Text  style={styles.button_text}>Зареєстуватися</Text>
             </TouchableOpacity>
+
+
+
             {/* TEXT */}
             <View style={styles.text_block}>
                 <Text  style={styles.text}>Вже є акаунт?  </Text>
