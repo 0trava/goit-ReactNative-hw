@@ -36,7 +36,7 @@ export default function PostsScreen() {
              <View style={styles.user_item}>
                 <Image source={Avatar} style={styles.user_avatar} ></Image>
                 <View>
-                <Text style={styles.user_name} >Natali Romanova</Text>
+                <Text style={styles.user_name}>{ params.login ? params.login : "Natali Romanova"}</Text>
                 <Text style={styles.user_email}>{params.email}</Text>
                 </View>
              </View>

@@ -43,7 +43,7 @@ export default function RegistrationScreen() {
         onChangeEmail("");
         onChangePassword("");
         setIsDisabled(true);
-        navigation.navigate("Home");
+        navigation.navigate("Home", { email: email, password: password, login: login});
       };
 
       useEffect (() => {
