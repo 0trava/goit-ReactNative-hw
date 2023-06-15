@@ -36,3 +36,8 @@
 Для групування екранів та рендеру окремого екрану використовують результат роботи функції createStackNavigator.
 
 createStackNavigator - повертає об'єкт, що містить 2 властивості: Screen та Navigator. Вони є компонентами React, які використовуються для налаштування навігатора. Navigator повинен містити елементи Screen як дочірні елементи для визначення конфігурації маршрутів.
+
+<h3>Нижня навігація</h3>
+
+<p>$ npm install @react-navigation/bottom-tabs</p>
+<p>$ npm install @expo/vector-icons</p>
