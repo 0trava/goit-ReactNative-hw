@@ -10,8 +10,6 @@ export default function CreatePostsScreen() {
     const [imageName, onChangeImageName ] = useState("");
     const [imageLocation, onChangeImageLocation ] = useState("");
 
-    icon = <Image source={IconLocation} />;
-
 
     useEffect (() => {
         if (imageName === "" || imageLocation === "" || loadImage === ""){

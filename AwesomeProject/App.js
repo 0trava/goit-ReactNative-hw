@@ -16,6 +16,11 @@ import Home from './Screens/Home';
 const MainStack = createStackNavigator(); // вказує на групу навігаторів
 
 export default function App() {
+  
+
+
+
+
   return (
     <NavigationContainer>
       <MainStack.Navigator initialRouteName="Login">{/* Аналог Routes */}

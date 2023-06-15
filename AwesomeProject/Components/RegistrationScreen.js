@@ -43,6 +43,7 @@ export default function RegistrationScreen() {
         onChangeEmail("");
         onChangePassword("");
         setIsDisabled(true);
+        navigation.navigate("Home");
       };
 
       useEffect (() => {
@@ -60,7 +61,7 @@ export default function RegistrationScreen() {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <ImageBackground source={require('../assets/images/background.png')} style={styles.background}>
         <TouchableWithoutFeedback 
-        onPress={Keyboard.dismiss}
+        // onPress={Keyboard.dismiss}
         >
 
         <View  style={styles.login_page}>
@@ -124,7 +125,7 @@ export default function RegistrationScreen() {
                 <Text  style={styles.text}>Вже є акаунт?  </Text>
                 <TouchableOpacity style={styles.text_link} onPress={() => navigation.navigate("Login")}>
                     <Text  style={styles.text_link}>Увійти</Text>
-                </TouchableOpacity>
+                    </TouchableOpacity>
             </View>
             </KeyboardAvoidingView>
             </View>

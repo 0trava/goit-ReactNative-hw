@@ -26,27 +26,49 @@ export default function LoginScreen() {
     const [password, onChangePassword] = useState('');
     const [isDisabled, setIsDisabled] = useState(true);
     const [secureText, setSecureText] = useState(true);
+    const [validEmail, setValidEmail] = useState(false);
+
 
     const showSecureText = () => {
         setSecureText(!secureText);
     }
 
+    const validate = (text) => {
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+
+        if (reg.test(text) === false) {
+          console.log("Email is Not Correct");
+          onChangeEmail(text);
+          setValidEmail(false);
+        }
+        else {
+          onChangeEmail(text);
+          setValidEmail(true);
+          console.log("Email is Correct");
+        }
+      }
+
 
     useEffect (() => {
         if (email === "" || password === ""){
-
         } else {
             setIsDisabled(false);
         }
-
     },[email, password]) 
 
     const onLogin = () => {
-        console.log(`Form submite email = ${email} password = ${password}`);
-        onChangeEmail("");
-        onChangePassword("");
-        setIsDisabled(true);
-        navigation.navigate("Home");
+        if (validEmail) {
+            console.log(`Form submite email = ${email} password = ${password}`);
+            onChangeEmail("");
+            onChangePassword("");
+            setIsDisabled(true);
+            navigation.navigate("Home");
+        } else {
+
+            Alert.alert('Email is Not Correct');
+            console.log('Email is Not Correct');
+        }
+
       };
 
 
@@ -57,7 +79,7 @@ export default function LoginScreen() {
     <ImageBackground source={require('../assets/images/background.png')} style={styles.background}>
 
         <TouchableWithoutFeedback 
-        onPress={Keyboard.dismiss}
+        // onPress={Keyboard.dismiss}
         >
         <View  style={styles.login_page}>
         <KeyboardAvoidingView // визначаємо ОС та налаштовуємо поведінку клавіатури
@@ -67,8 +89,10 @@ export default function LoginScreen() {
             {/* INPUT-email */}
             <TextInput
                 style={styles.input_name}
-                onChangeText={onChangeEmail}
+                onChangeText={(text) => validate(text)}
                 placeholder="Адреса електронної пошти"
+                testID="LoginEmailAddress"
+                textContentType="emailAddress"
                 keyboardType="email-address"
                 autoComplete='email'
                 returnKeyType="next"
@@ -131,7 +155,7 @@ const styles = StyleSheet.create({
 
         position: 'absolute',
         width: '100%',
-        height: "50%",
+        height: "55%",
         left: 0,
         bottom: 0,
         backgroundColor: '#FFFFFF',

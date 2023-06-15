@@ -42,8 +42,5 @@ export default function Home() {
 }
 
 const styles = StyleSheet.create({
-    header: {
-        backgroundColor: "red",
-        justifyContent: "center",
-    },
+
 })
