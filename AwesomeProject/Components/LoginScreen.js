@@ -62,7 +62,7 @@ export default function LoginScreen() {
             onChangeEmail("");
             onChangePassword("");
             setIsDisabled(true);
-            navigation.navigate("Home");
+            navigation.navigate("Home", { email: email, password: password });
         } else {
 
             Alert.alert('Email is Not Correct');

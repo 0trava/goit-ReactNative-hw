@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image,TouchableOpacity } from 'react-native';
 import React from 'react';
 import { useFonts } from 'expo-font';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import IconOut from '../assets/images/postsscreen_icon_out.png';
 import IconGrid from  '../assets/images/toolbar_grid.png';
@@ -16,6 +16,7 @@ export default function PostsScreen() {
         'Roboto-Medium': require('../assets/fonts/Roboto-Medium.ttf'),
       });
     const navigation = useNavigation();
+    const {params} = useRoute();
 
   return (
     <View style={styles.container}>
@@ -36,7 +37,7 @@ export default function PostsScreen() {
                 <Image source={Avatar} style={styles.user_avatar} ></Image>
                 <View>
                 <Text style={styles.user_name} >Natali Romanova</Text>
-                <Text style={styles.user_email}>email@example.com</Text>
+                <Text style={styles.user_email}>{params.email}</Text>
                 </View>
              </View>
 
