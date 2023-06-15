@@ -1,8 +1,29 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'react-native';
 import React, { useEffect, useState } from 'react';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons } from "@expo/vector-icons";
 
 import Icon_camera from '../assets/images/icon_camera.png';
 import IconLocation from  '../assets/images/icon_location.png';
+
+
+const Tabs = createBottomTabNavigator();
+
+function Settings() {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>Settings!</Text>
+      </View>
+    );
+  }
+  
+  function Profile() {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>Profile!</Text>
+      </View>
+    );
+  }
 
 export default function CreatePostsScreen() {
     const [loadImage, setloadImage] = useState("");
@@ -62,6 +83,7 @@ export default function CreatePostsScreen() {
 }
 
 const styles = StyleSheet.create({
+
 
     container: {
         flex: 1,
@@ -162,5 +184,11 @@ const styles = StyleSheet.create({
         lineHeight: 19,
 
     },
+
+    containerBar: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+      },
 
 })

@@ -2,12 +2,17 @@ import { StyleSheet, Text, View, Image,TouchableOpacity } from 'react-native';
 import React from 'react';
 import { useFonts } from 'expo-font';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+// import { Ionicons } from "@expo/vector-icons";
 
 import IconOut from '../assets/images/postsscreen_icon_out.png';
 import IconGrid from  '../assets/images/toolbar_grid.png';
 import IconUnion from  '../assets/images/toolbar_union.png';
 import IconUser from  '../assets/images/toolbar_user.png';
 import Avatar from  '../assets/images/ava.png';
+
+import CreatePostsScreen from "./CreatePostsScreen";
+import ProfileScreen from './ProfileScreen';
 
 export default function PostsScreen() {
     const [fontsLoaded] = useFonts({
@@ -16,7 +21,8 @@ export default function PostsScreen() {
         'Roboto-Medium': require('../assets/fonts/Roboto-Medium.ttf'),
       });
     const navigation = useNavigation();
-    const {params} = useRoute();
+    // const {params} = useRoute();
+    const Tabs = createBottomTabNavigator();
 
   return (
     <View style={styles.container}>
@@ -36,8 +42,8 @@ export default function PostsScreen() {
              <View style={styles.user_item}>
                 <Image source={Avatar} style={styles.user_avatar} ></Image>
                 <View>
-                <Text style={styles.user_name}>{ params.login ? params.login : "Natali Romanova"}</Text>
-                <Text style={styles.user_email}>{params.email}</Text>
+                <Text style={styles.user_name}>"Natali Romanova"</Text>
+                <Text style={styles.user_email}>0trav@list.ru</Text>
                 </View>
              </View>
 
@@ -60,6 +66,19 @@ export default function PostsScreen() {
                 <Image source={IconUser} style={styles.header_iconUser} ></Image>
             </TouchableOpacity>
         </View>
+
+        <Tabs.Navigator>
+                {/* <Tabs.Screen name="PostsScreen" component={PostsScreen} /> */}
+                <Tabs.Screen name="CreatePostsScreen" component={CreatePostsScreen} />
+                <Tabs.Screen name="ProfileScreen" component={ProfileScreen} />
+        </Tabs.Navigator>
+
+
+
+
+
+
+
     </View>
     
   )

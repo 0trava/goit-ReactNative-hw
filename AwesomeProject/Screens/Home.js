@@ -15,7 +15,7 @@ const MainStack = createStackNavigator(); // вказує на групу нав
 export default function Home() {
     const { params} = useRoute();
     // console.log(useRoute());
-    // console.log(params);
+    console.log(params);
 
 
 
