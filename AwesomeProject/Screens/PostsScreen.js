@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image,TouchableOpacity } from 'react-native';
 import React from 'react';
 import { useFonts } from 'expo-font';
+import { useNavigation } from '@react-navigation/native';
 
 import IconOut from '../assets/images/postsscreen_icon_out.png';
 import IconGrid from  '../assets/images/toolbar_grid.png';
@@ -14,6 +15,7 @@ export default function PostsScreen() {
         'Roboto-Bold': require('../assets/fonts/Roboto-Bold.ttf'),
         'Roboto-Medium': require('../assets/fonts/Roboto-Medium.ttf'),
       });
+    const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
@@ -48,8 +50,8 @@ export default function PostsScreen() {
             <TouchableOpacity style={styles.footer_icon} onPress={()=> {}}>
                 <Image source={IconGrid} style={styles.header_iconGrid} ></Image>
             </TouchableOpacity>
-            {/* ICON-BTN */}
-            <TouchableOpacity style={styles.footer_btn} onPress={()=> {}}>
+            {/* ICON-BTN ADD */}
+            <TouchableOpacity style={styles.footer_btn} onPress={()=> navigation.navigate("CreatePostsScreen")}>
                 <Image source={IconUnion} style={styles.header_iconUnion} ></Image>
             </TouchableOpacity>
             {/* ICON-USER */}

@@ -11,6 +11,7 @@ import {
     Alert,
     Platform } from 'react-native';
 import React, { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import { useFonts } from 'expo-font';
 
@@ -20,6 +21,7 @@ export default function LoginScreen() {
         'Roboto-Bold': require('../assets/fonts/Roboto-Bold.ttf'),
         'Roboto-Medium': require('../assets/fonts/Roboto-Medium.ttf'),
       });
+    const navigation = useNavigation();
     const [email, onChangeEmail] = useState('');
     const [password, onChangePassword] = useState('');
     const [isDisabled, setIsDisabled] = useState(true);
@@ -44,6 +46,7 @@ export default function LoginScreen() {
         onChangeEmail("");
         onChangePassword("");
         setIsDisabled(true);
+        navigation.navigate("Home");
       };
 
 
@@ -98,7 +101,7 @@ export default function LoginScreen() {
             {/* TEXT */}
             <View style={styles.text_block}>
                 <Text  style={styles.text}>Немає акаунту? </Text>
-                <TouchableOpacity style={styles.text_link} onPress={()=> {}}><Text  style={styles.text_link}>Зареєструватися</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.text_link} onPress={() => navigation.navigate("Registration")}><Text  style={styles.text_link}>Зареєструватися</Text></TouchableOpacity>
             </View>
             </KeyboardAvoidingView>
             </View>

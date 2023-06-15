@@ -12,6 +12,7 @@ import {
     Platform,
     Image } from 'react-native';
 import React, { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import { useFonts } from 'expo-font';
 import add_icon from '../assets/images/add_icon.png';
@@ -22,11 +23,14 @@ export default function RegistrationScreen() {
         'Roboto-Bold': require('../assets/fonts/Roboto-Bold.ttf'),
         'Roboto-Medium': require('../assets/fonts/Roboto-Medium.ttf'),
       });
+    const navigation = useNavigation();
+
     const [login, onChangeLogin] = React.useState('');
     const [email, onChangeEmail] = React.useState('');
     const [password, onChangePassword] = React.useState('');
     const [isDisabled, setIsDisabled] = useState(true);
     const [secureText, setSecureText] = useState(true);
+    
 
     const showSecureText = () => {
         setSecureText(!secureText);
@@ -48,7 +52,7 @@ export default function RegistrationScreen() {
             setIsDisabled(false);
         }
 
-    },[email, password]) 
+    },[email, password, login ]) 
 
 
 
@@ -118,7 +122,9 @@ export default function RegistrationScreen() {
             {/* TEXT */}
             <View style={styles.text_block}>
                 <Text  style={styles.text}>Вже є акаунт?  </Text>
-                <TouchableOpacity style={styles.text_link} onPress={()=> {}}><Text  style={styles.text_link}>Увійти</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.text_link} onPress={() => navigation.navigate("Login")}>
+                    <Text  style={styles.text_link}>Увійти</Text>
+                </TouchableOpacity>
             </View>
             </KeyboardAvoidingView>
             </View>
